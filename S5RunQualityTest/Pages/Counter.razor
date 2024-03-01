@@ -7,12 +7,35 @@
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<hr />
+<p>Accumulator current value: @accumulator</p>
+<lable>How much would you like to add to the accumulator?</lable>
+
+<input type="number" @bind="@inputValue" />
+<button class="btn btn-primary" @onclick="AddToAccumulator">Add to accumulator</button>
+
 
 @code {
     private int currentCount = 0;
+    public int accumulator { get; private set; } = 0;
+    private int inputValue = 0;
+    
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    private void AddToAccumulator()
+    {
+        //get the value from the input
+        int valueToAdd = inputValue;
+        //update the accumulator
+        UpdateAccumulator(valueToAdd);
+    }
+
+    public int UpdateAccumulator(int valueToAdd)
+    {
+       return accumulator += valueToAdd;
     }
 }
